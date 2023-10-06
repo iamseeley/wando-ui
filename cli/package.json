@@ -1,0 +1,31 @@
+{
+  "name": "wando-ui-cli",
+  "version": "1.0.0",
+  "description": "CLI tool for wando-ui to initialize and add components.",
+  "main": "bin/wando-ui.js",
+  "bin": {
+    "wando-ui": "./bin/wando-ui.js"
+  },
+  "scripts": {
+    "start": "node ./bin/wando-ui.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wandoweb/wando-ui.git"
+  },
+  "keywords": [
+    "wando-ui",
+    "cli",
+    "components"
+  ],
+  "author": "Thomas Seeley",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wandoweb/wando-ui/issues"
+  },
+  "homepage": "https://github.com/wandoweb/wando-ui#readme",
+  "dependencies": {
+    "commander": "^11.0.0",
+    "fs-extra": "^11.1.1"
+  }
+}
