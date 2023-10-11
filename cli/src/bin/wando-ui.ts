@@ -1,8 +1,9 @@
 #!/usr/bin/env node
 
-const { Command } = require('commander');
-const initWandoUI = require('../scripts/init');
-const add = require('../scripts/add');
+// Importing modules using ESM syntax
+import { Command } from 'commander';
+import initWandoUI from '../scripts/init';
+import add from '../scripts/add';
 
 const program = new Command();
 

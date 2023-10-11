@@ -3,6 +3,11 @@ import chalk from 'chalk';
 import { execSync } from 'child_process';
 import fsExtra from 'fs-extra';
 import path from 'path';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 export default async function initWandoUI() {
 
@@ -21,7 +26,7 @@ export default async function initWandoUI() {
     const globalsDest = answers.globalsDest;
     
     // Install TailwindCSS and other dependencies
-    console.log(chalk.blue("Installing dependencies: tailwindcss, postcss, autoprefixer..."));
+    console.log(chalk.white("Installing dependencies: tailwindcss, postcss, autoprefixer..."));
     execSync('npm install tailwindcss postcss autoprefixer', { stdio: 'inherit' });
     console.log(chalk.green("Dependencies installed successfully!"));
 
@@ -35,7 +40,7 @@ export default async function initWandoUI() {
     // Define destination paths
     const currentDirectory = process.cwd();
     const tailwindConfigDest = path.join(currentDirectory, 'tailwind.config.ts');
-    const globalStylesDest = path.join(currentDirectory, globalsDest, 'global.css');
+    const globalStylesDest = path.join(currentDirectory, globalsDest, 'globals.css');
 
     // Copy the tailwind.config.js and global.css files
     fsExtra.copySync(tailwindConfigSource, tailwindConfigDest);
