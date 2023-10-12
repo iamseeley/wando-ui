@@ -10,7 +10,7 @@ const config: Config = {
 	darkMode: 'class',
 
   content: [
-        './app/**/*.{js,ts,jsx,tsx,mdx}',
+        './app/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
     extend: {
