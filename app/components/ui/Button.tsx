@@ -1,7 +1,7 @@
 import { cva, VariantProps } from 'class-variance-authority';
 
  const buttonStyles = cva(
-	'flex items-center justify-center px-4 py-2 rounded font-medium focus:outline-none focus:ring-2 focus:ring-offset-white dark:focus:ring-offset-black focus:ring-offset-1 disabled:opacity-60 disabled:pointer-events-none hover:bg-opacity-80',
+	'flex items-center justify-center px-4 py-2 rounded font-medium focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-white dark:focus:ring-offset-black focus:ring-offset-1 disabled:opacity-60 disabled:pointer-events-none hover:bg-opacity-80',
 	{
 		variants: {
 			intent: {
@@ -13,6 +13,9 @@ import { cva, VariantProps } from 'class-variance-authority';
 			fullWidth: {
 				true: 'w-full',
 			},
+			centered: {
+				true: 'm-auto'
+			}
 		},
 		defaultVariants: {
 			intent: 'primary',
@@ -27,8 +30,8 @@ export interface ButtonProps extends
 			children: string,
 		}
 
-export function Button({ intent, children, fullWidth, ...props }: ButtonProps) {
+export function Button({ intent, children, fullWidth, centered, ...props }: ButtonProps) {
 	return (
-		<button className={buttonStyles({ intent, fullWidth })} {...props} >{children}</button>
+		<button className={buttonStyles({ intent, fullWidth, centered })} {...props} >{children}</button>
 	);
 }
