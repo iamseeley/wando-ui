@@ -33,7 +33,7 @@ export interface CardProps extends
 			children: string,
 		}
 
-export function Card({ intent, children, fullWidth, centered, ...props }: CardProps) {
+export default function Card({ intent, children, fullWidth, centered, ...props }: CardProps) {
 	return (
 		<div className={cardStyles({ intent, fullWidth, centered })} {...props} >{children}</div>
 	);

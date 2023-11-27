@@ -3,8 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "build-snippets": "node ./app/scripts/Snippets.js",
     "dev": "next dev",
-    "build": "next build",
+    "build": "npm run build-snippets && next build",
     "start": "next start",
     "lint": "next lint"
   },

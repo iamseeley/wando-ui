@@ -30,7 +30,7 @@ export interface ButtonProps extends
 			children: string,
 		}
 
-export function Button({ intent, children, fullWidth, centered, ...props }: ButtonProps) {
+export default function Button({ intent, children, fullWidth, centered, ...props }: ButtonProps) {
 	return (
 		<button className={buttonStyles({ intent, fullWidth, centered })} {...props} >{children}</button>
 	);
