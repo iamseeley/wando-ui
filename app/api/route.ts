@@ -1,23 +1,19 @@
 // pages/api/componentCode/[component].ts
 import type { NextApiRequest, NextApiResponse } from 'next';
+import { promises as fs } from 'fs';
+import path from 'path';
 
-interface ComponentSources {
-    [key: string]: string;
-  }
-  
-  const componentSourceCode: ComponentSources = {
-    Button: '<Button>Click me</Button>', // Button component source code as a string
-    Card: '<Card>Card content</Card>', // Card component source code as a string
-    // ... other components
-  };
-
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function GET(req: NextApiRequest, res: NextApiResponse) {
   const { component } = req.query;
 
-  // Check if the code snippet exists for the requested component
-  if (typeof component === 'string' && componentSourceCode[component]) {
-    res.status(200).json({ code: componentSourceCode[component] });
-  } else {
-    res.status(404).json({ error: 'Component not found' });
+  try {
+    // Adjust the path to where your components are stored
+    const filePath = path.join(process.cwd(), '../componets/ui/', `${component}.tsx`);
+    const fileContents = await fs.readFile(filePath, 'utf8');
+
+    res.status(200).json({ code: fileContents });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Error reading component file' });
   }
 }

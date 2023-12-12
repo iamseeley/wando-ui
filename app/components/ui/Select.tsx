@@ -12,8 +12,13 @@ const SelectComponent = () => {
   useEffect(() => {
     if (selectedComponent) {
       // Fetch the code snippet for the selected component
-      fetch(`/api/componentCode/${selectedComponent}`)
-        .then(response => response.json())
+      fetch(`/api/components?component=${selectedComponent}`)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
         .then(data => setCodeSnippet(data.code))
         .catch(error => console.error('Error fetching component code:', error));
 
