@@ -11,11 +11,11 @@ interface ComponentData {
 
 
 async function fetchComponentsData(): Promise<ComponentData[] | null> {
-    const url = 'https://raw.githubusercontent.com/iamseeley/wando-ui/app/data/components.ts';
+    const url = 'https://raw.githubusercontent.com/iamseeley/wando-ui/main/app/data/components.ts';
 
     try {
         const response = await fetch(url);
-        const data = await response.json();
+        const data = await response.text();
 
         if (!Array.isArray(data) || !data.every(item => 'name' in item && 'code' in item)) {
             throw new Error('Invalid data format');
