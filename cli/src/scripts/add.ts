@@ -1,44 +1,65 @@
 import fs from 'fs-extra';
 import path from 'path';
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
 import inquirer from 'inquirer';
+import fetch from 'node-fetch';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+interface ComponentData {
+    name: string;
+    code: string;
+}
+
+
+
+async function fetchComponentsData(): Promise<ComponentData[] | null> {
+    const url = 'https://raw.githubusercontent.com/iamseeley/wando-ui/app/data/components.ts';
+
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+
+        if (!Array.isArray(data) || !data.every(item => 'name' in item && 'code' in item)) {
+            throw new Error('Invalid data format');
+        }
+
+        return data as ComponentData[];
+    } catch (error) {
+        console.error('Error fetching components data:', error);
+        return null;
+    }
+}
+
+
 
 export default async function add(componentName: string) {
-    // Append .tsx extension to componentName
-    const fileName = `${componentName}.tsx`;
+    const componentsData = await fetchComponentsData();
 
-    // Array of potential source directories
-    const potentialPaths = [
-        path.resolve(__dirname, `../../app/components/ui/${fileName}`),
-        path.resolve(__dirname, `../../app/components/layout/${fileName}`)
-    ];
-
-    // Find the first existing source path
-    const sourcePath = potentialPaths.find(fs.existsSync);
-
-    if (!sourcePath) {
-        console.error(`Component ${componentName} not found in UI or Layout directories.`);
+    if (!componentsData) {
+        console.error('Failed to fetch components data.');
         return;
     }
 
-    // Prompt user for the destination directory
+    const componentData = componentsData.find((comp: ComponentData) => comp.name === componentName);
+
+    if (!componentData) {
+        console.error(`Component ${componentName} not found.`);
+        return;
+    }
+
+
+
     const answers = await inquirer.prompt([
         {
             type: 'input',
             name: 'componentDest',
-            message: 'Enter the destination path for ${fileName} (default: current directory):',
+            message: `Enter the destination path for ${componentName} (default: current directory):`,
             default: './'
         }
     ]);
 
     const componentDestDir = answers.componentDest;
-    const destPath = path.resolve(process.cwd(), componentDestDir, fileName);
+    const destPath = path.resolve(process.cwd(), componentDestDir, `${componentName}.tsx`);
 
-    fs.copy(sourcePath, destPath)
+    fs.outputFile(destPath, componentData.code)
         .then(() => console.log(`Added ${componentName} component to the project at ${componentDestDir}.`))
-        .catch(err => console.error(err));
-};
+        .catch(err => console.error('Error writing component file:', err));
+}
