@@ -5,12 +5,15 @@
   "type": "module",
   "main": "src/dist/wando-ui.js",
   "types": "src/dist/wando-ui.d.ts",
+  
   "bin": {
     "wando-ui": "./src/dist/wando-ui.js"
   },
   "scripts": {
     "start": "node ./src/dist/wando-ui.js",
-    "build": "tsup"
+    "build": "tsup",
+    "prepublishOnly": "node prepublish.js && tsc",
+    "release": "cross-env RELEASE_MODE=true np --no-tests"
   },
   "repository": {
     "type": "git",
@@ -37,6 +40,8 @@
     "@types/fs-extra": "^11.0.2",
     "@types/inquirer": "^9.0.4",
     "@types/node": "^20.8.3",
+    "cross-env": "^7.0.3",
+    "np": "^9.2.0",
     "ts-node": "^10.9.1",
     "tsup": "^7.2.0",
     "typescript": "^5.2.2"
