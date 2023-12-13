@@ -5,7 +5,6 @@
   "type": "module",
   "main": "src/dist/wando-ui.js",
   "types": "src/dist/wando-ui.d.ts",
-  
   "bin": {
     "wando-ui": "./src/dist/wando-ui.js"
   },
