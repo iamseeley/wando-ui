@@ -3,13 +3,13 @@
   "version": "1.3.0",
   "description": "CLI tool for wando-ui to initialize and add components.",
   "type": "module",
-  "main": "src/dist/wando-ui.js",
-  "types": "src/dist/wando-ui.d.ts",
+  "main": "./dist/wando-ui.js",
+  "types": "./dist/wando-ui.d.ts",
   "bin": {
-    "wando-ui": "./src/dist/wando-ui.js"
+    "wando-ui": "./dist/wando-ui.js"
   },
   "scripts": {
-    "start": "node ./src/dist/wando-ui.js",
+    "start": "node ./dist/wando-ui.js",
     "build": "tsup"
   },
   "repository": {
