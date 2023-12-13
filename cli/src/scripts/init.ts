@@ -26,7 +26,7 @@ export default async function initWandoUI() {
     const globalsDest = answers.globalsDest;
     
     // Install TailwindCSS and other dependencies
-    console.log(chalk.white("Installing dependencies: tailwindcss, postcss, autoprefixer..."));
+    console.log(chalk.white("Installing dependencies: tailwindcss, postcss, autoprefixer, class-variance-authority..."));
     execSync('npm install tailwindcss postcss autoprefixer class-variance-authority', { stdio: 'inherit' });
     console.log(chalk.green("Dependencies installed successfully!"));
 
