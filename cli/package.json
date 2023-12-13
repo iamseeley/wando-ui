@@ -1,5 +1,5 @@
 {
-  "name": "wando-ui-cli",
+  "name": "wando-ui",
   "version": "1.0.0",
   "description": "CLI tool for wando-ui to initialize and add components.",
   "type": "module",
@@ -10,9 +10,7 @@
   },
   "scripts": {
     "start": "node ./src/dist/wando-ui.js",
-    "build": "tsup",
-    "prepublishOnly": "node prepublish.js && tsc",
-    "release": "cross-env RELEASE_MODE=true np --no-tests"
+    "build": "tsup"
   },
   "repository": {
     "type": "git",
@@ -39,8 +37,6 @@
     "@types/fs-extra": "^11.0.2",
     "@types/inquirer": "^9.0.4",
     "@types/node": "^20.8.3",
-    "cross-env": "^7.0.3",
-    "np": "^9.2.0",
     "ts-node": "^10.9.1",
     "tsup": "^7.2.0",
     "typescript": "^5.2.2"
