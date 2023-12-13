@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wandoweb/wando-ui.git"
+    "url": "git+https://github.com/iamseeley/wando-ui.git"
   },
   "keywords": [
     "wando-ui",
@@ -24,9 +24,9 @@
   "author": "Thomas Seeley",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/wandoweb/wando-ui/issues"
+    "url": "https://github.com/iamseeley/wando-ui/issues"
   },
-  "homepage": "https://github.com/wandoweb/wando-ui#readme",
+  "homepage": "https://github.com/iamseeley/wando-ui#readme",
   "dependencies": {
     "chalk": "^5.3.0",
     "commander": "^11.0.0",
