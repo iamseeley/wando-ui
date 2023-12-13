@@ -1,40 +1,75 @@
 'use client'
 
-import React, { useState, useEffect } from 'react';
+import React, { FC, ReactNode, useState } from 'react';
 import Button from './Button';
 import Card from './Card';
+import { componentsData } from '@/app/data/components';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { darcula } from 'react-syntax-highlighter/dist/esm/styles/prism';
+
+
+type CodeBlockProps = {
+    codeSnippet: string;
+};
+
+const CodeBlock: FC<CodeBlockProps> = ({ codeSnippet }) => {
+    // Copy to Clipboard Function
+    const copyToClipboard = async () => {
+        try {
+            await navigator.clipboard.writeText(codeSnippet);
+            console.log('Code copied to clipboard!');
+            // You can add more feedback logic here
+        } catch (err) {
+            console.error('Error in copying text: ', err);
+        }
+    };
+
+    return (
+     
+        <div className='relative'>
+          
+            <button 
+                onClick={copyToClipboard}
+                className=' absolute top-6 right-4 cursor-pointer '
+            >
+                <svg className='stroke-slate-200' xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" ><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+            </button>
+           
+                
+            <SyntaxHighlighter language="typescript" style={darcula} customStyle={{ paddingTop: "40px"}}>
+                {codeSnippet}
+            </SyntaxHighlighter>
+            
+        </div>
+        
+    );
+};
+
+
+
+
+// Adjust the path as necessary
 
 const SelectComponent = () => {
-  const [selectedComponent, setSelectedComponent] = useState<string>('');
-  const [codeSnippet, setCodeSnippet] = useState<string>('');
+  const [selectedComponent, setSelectedComponent] = useState('');
+  const [codeSnippet, setCodeSnippet] = useState('');
   const [viewMode, setViewMode] = useState('preview');
 
-  useEffect(() => {
-    if (selectedComponent) {
-      // Fetch the code snippet for the selected component
-      fetch(`/api/components?component=${selectedComponent}`)
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.json();
-      })
-        .then(data => setCodeSnippet(data.code))
-        .catch(error => console.error('Error fetching component code:', error));
-
-      // Reset view mode to preview
-      setViewMode('preview');
-    }
-  }, [selectedComponent]);
-
   const handleComponentChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedComponent(event.target.value);
+    const selectedName = event.target.value;
+    setSelectedComponent(selectedName);
+
+    const componentData = componentsData.find(comp => comp.name === selectedName);
+    if (componentData) {
+      setCodeSnippet(componentData.code);
+    } else {
+      setCodeSnippet('');
+    }
+
+    setViewMode('preview');
   };
 
-  const handleViewModeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setViewMode(event.target.value);
-    
-  };
+
 
   const renderDynamicComponent = () => {
     switch (selectedComponent) {
@@ -73,8 +108,8 @@ const SelectComponent = () => {
       </div>
 
       {viewMode === 'preview' && renderDynamicComponent()}
-      {viewMode === 'code' && <pre>{codeSnippet}</pre>}
-    </div>
+      {viewMode === 'code' && <CodeBlock codeSnippet={codeSnippet} />
+}</div> 
   );
 };
 

@@ -24,7 +24,6 @@ import { cva, VariantProps } from 'class-variance-authority';
 );
 
 
-
 export interface ButtonProps extends
 		VariantProps<typeof buttonStyles> {
 			children: string,

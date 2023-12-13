@@ -1,7 +1,5 @@
-
-
-
 import { cva, VariantProps } from 'class-variance-authority';
+import { ReactNode } from 'react';
 
  const cardStyles = cva(
 	'flex items-center justify-center px-10 py-10 rounded-lg',
@@ -30,7 +28,7 @@ import { cva, VariantProps } from 'class-variance-authority';
 
 export interface CardProps extends
 		VariantProps<typeof cardStyles> {
-			children: string,
+			children: ReactNode,
 		}
 
 export default function Card({ intent, children, fullWidth, centered, ...props }: CardProps) {

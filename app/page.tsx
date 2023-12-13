@@ -4,13 +4,14 @@ import Link from 'next/link';
 import Button from './components/ui/Button';
 import Card from './components/ui/Card';
 import SelectComponent from './components/ui/Select';
+import CodeBlock from './components/ui/CodeBlock';
 
 export default function Home() {
   return (
     <>
+    
+    <div className="max-w-2xl">
     <Header />
-    <div className="flex justify-center">
-     
       <div className='flex flex-col gap-4'>
       
      
@@ -22,7 +23,7 @@ export default function Home() {
         <p>The components are written in TypeScript and styled with Tailwind CSS.</p>
         {/* <h4>select framework</h4> */}
         <h3>Installation</h3>
-        <pre>npx wando-ui init</pre>
+        <CodeBlock codeSnippet='npx wando-ui init'/>
       </section>
 
       <section className='prose'>
@@ -32,7 +33,7 @@ export default function Home() {
 
       <section id='components' className='prose'>
         <h3>Add Component</h3>
-        <pre>npx wando-ui add $component</pre>
+        <CodeBlock codeSnippet='npx wando-ui add $component'/>
       </section>
       </div>
     </div>
