@@ -1,4 +1,4 @@
-import Navbar from "@layout/Navbar"
+import Navbar from "./Navbar";
 import Image from "next/image";
 import Button from "../ui/Button";
 import Link from "next/link";
