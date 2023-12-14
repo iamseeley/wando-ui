@@ -15,7 +15,7 @@ export default function Home() {
       <section className='prose prose-p:my-1.5'>
         <div className=' flex flex-col border-2 border-gray-300 border-dotted bg-white py-4 px-6 text-black'>
           <p>This project was inspired by the amazing work of <Link rel='noopener noreferrer' target='_blank' href={'https://twitter.com/shadcn'} >shadcn</Link> with shadcn/ui.</p>
-          <p>I wanted to create a little component collection for my web development projects. It's a work in progress...</p>
+          <p>I wanted to create a little component collection for my web development projects. It&apos;s a work in progress...</p>
         </div>
         <h3>*</h3>
         <p>The components are written in TypeScript and styled with Tailwind CSS.</p>
