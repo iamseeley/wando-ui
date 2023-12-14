@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build-snippets": "node ./app/scripts/Snippets.js",
+    "build-snippets": "node ./app/scripts/extractComponents.js",
     "dev": "next dev",
     "build": "npm run build-snippets && next build",
     "start": "next start",
