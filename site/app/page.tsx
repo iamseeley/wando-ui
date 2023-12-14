@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import Header from '@/site/app/components/layout/Header';
 import SelectComponent from './components/ui/Select';
 import CodeBlock from './components/ui/CodeBlock';
 
