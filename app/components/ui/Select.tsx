@@ -72,11 +72,16 @@ const SelectComponent = () => {
 
 
   const renderDynamicComponent = () => {
+    if (!selectedComponent) {
+      
+      return <div className=" py-4">Oh, hi. Nothing to see here. Select a component!</div>;
+    }
+
     switch (selectedComponent) {
       case 'Button':
         return <Card><Button>Button</Button></Card>;
       case 'Card':
-        return <Card><div>Card</div></Card>;
+        return <Card><div></div></Card>;
       // Add cases for other components
       default:
         return null;
@@ -92,7 +97,8 @@ const SelectComponent = () => {
         {/* Add more options here */}
       </select>
 
-      <div className="flex gap-2 mb-4 border-b border-gray-300">
+    {selectedComponent && (
+      <div className="flex gap-2 mb-2 border-b border-gray-300">
         <span 
           className={`cursor-pointer ${viewMode === 'preview' ? 'border-b-2 border-orange-500' : ''}`}
           onClick={() => setViewMode('preview')}
@@ -106,10 +112,10 @@ const SelectComponent = () => {
           Code
         </span>
       </div>
+    )}
 
-      {viewMode === 'preview' && renderDynamicComponent()}
-      {viewMode === 'code' && <CodeBlock codeSnippet={codeSnippet} />
-}</div> 
+    {viewMode === 'preview' ? renderDynamicComponent() : (selectedComponent && <CodeBlock codeSnippet={codeSnippet} />)}
+</div> 
   );
 };
 
