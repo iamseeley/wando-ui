@@ -9,25 +9,35 @@ interface ComponentData {
 }
 
 
+async function fetchComponentCode(componentName: string): Promise<string> {
+    const componentUrl = `https://raw.githubusercontent.com/iamseeley/wando-ui/main/app/components/ui/${componentName}.tsx`;
+    const response = await fetch(componentUrl);
+    if (!response.ok) {
+        throw new Error(`Failed to fetch component ${componentName}: ${response.statusText}`);
+    }
+    return response.text();
+}
 
 async function fetchComponentsData(): Promise<ComponentData[] | null> {
-    const url = 'https://raw.githubusercontent.com/iamseeley/wando-ui/main/app/data/components.ts';
+    const listUrl = 'https://raw.githubusercontent.com/iamseeley/wando-ui/main/app/components/components.json';
 
     try {
-        const response = await fetch(url);
-        const data = await response.text();
+        const response = await fetch(listUrl);
+        const componentNames: string[] = await response.json() as string[];
 
-        if (!Array.isArray(data) || !data.every(item => 'name' in item && 'code' in item)) {
-            throw new Error('Invalid data format');
+        const componentsData: ComponentData[] = [];
+
+        for (const name of componentNames) {
+            const code = await fetchComponentCode(name);
+            componentsData.push({ name, code });
         }
 
-        return data as ComponentData[];
+        return componentsData;
     } catch (error) {
         console.error('Error fetching components data:', error);
         return null;
     }
 }
-
 
 
 export default async function add(componentName: string) {
