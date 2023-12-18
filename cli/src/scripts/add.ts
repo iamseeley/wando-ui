@@ -10,7 +10,7 @@ interface ComponentData {
 
 
 async function fetchComponentCode(componentName: string): Promise<string> {
-    const componentUrl = `https://raw.githubusercontent.com/iamseeley/wando-ui/main/app/components/ui/${componentName}.tsx`;
+    const componentUrl = `https://raw.githubusercontent.com/iamseeley/wando-ui/main/site/app/components/ui/${componentName}.tsx`;
     const response = await fetch(componentUrl);
     if (!response.ok) {
         throw new Error(`Failed to fetch component ${componentName}: ${response.statusText}`);
@@ -19,7 +19,7 @@ async function fetchComponentCode(componentName: string): Promise<string> {
 }
 
 async function fetchComponentsData(): Promise<ComponentData[] | null> {
-    const listUrl = 'https://raw.githubusercontent.com/iamseeley/wando-ui/main/app/components/components.json';
+    const listUrl = 'https://raw.githubusercontent.com/iamseeley/wando-ui/main/site/app/components/components.json';
 
     try {
         const response = await fetch(listUrl);
