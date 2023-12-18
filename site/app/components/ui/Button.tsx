@@ -1,27 +1,28 @@
 import { cva, VariantProps } from 'class-variance-authority';
 
- const buttonStyles = cva(
-	'flex items-center justify-center px-4 py-2 rounded font-medium focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-white dark:focus:ring-offset-black focus:ring-offset-1 disabled:opacity-60 disabled:pointer-events-none hover:bg-opacity-80',
+const buttonStyles = cva(
+	'flex items-center shadow-sm  justify-center px-4 py-1 rounded-full font-medium text-shadow hover:opacity-80  transition-all',
 	{
-		variants: {
-			intent: {
-				primary: 'bg-orange-500 text-white',
-				secondary:
-					'bg-gray-200 text-gray-900 dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-gray-100 focus:ring-gray-500',
-				danger: 'bg-red-500 text-white focus:ring-red-500',
-			},
-			fullWidth: {
-				true: 'w-full',
-			},
-			centered: {
-				true: 'm-auto'
-			}
+	  variants: {
+		intent: {
+		  primary: 'bg-gradient-to-br from-neutral-50 to-neutral-100 hover:border-orange-600 ',
+		  secondary:
+			'bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 hover:border-orange-600 text-white',
 		},
-		defaultVariants: {
-			intent: 'primary',
+		fullWidth: {
+		  true: 'w-full',
 		},
+		centered: {
+		  true: 'm-auto'
+		}
+	  },
+	  defaultVariants: {
+		intent: 'primary',
+	  },
 	},
-);
+  );
+  
+
 
 
 export interface ButtonProps extends

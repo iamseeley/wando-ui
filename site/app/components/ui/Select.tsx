@@ -79,7 +79,7 @@ const SelectComponent = () => {
 
     switch (selectedComponent) {
       case 'Button':
-        return <Card><Button>Button</Button></Card>;
+        return <Card intent={"primary"}><Button intent={"secondary"}>Button</Button></Card>;
       case 'Card':
         return <Card><div></div></Card>;
       // Add cases for other components

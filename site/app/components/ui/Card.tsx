@@ -6,10 +6,9 @@ import { ReactNode } from 'react';
 	{
 		variants: {
 			intent: {
-				primary: 'bg-white border shadow-sm text-black',
+				primary: 'bg-primary border shadow-sm text-black',
 				secondary:
-					'bg-gray-200 text-gray-900 dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-gray-100 focus:ring-gray-500',
-				danger: 'bg-red-500 text-white focus:ring-red-500',
+					'bg-secondary text-gray-900 dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-gray-100 focus:ring-gray-500',
 			},
 			fullWidth: {
 				true: 'w-full',

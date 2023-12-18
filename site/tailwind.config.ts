@@ -1,9 +1,8 @@
 import type { Config } from 'tailwindcss'
 
 const defaultTheme = require('tailwindcss/defaultTheme');
-const colors = require('tailwindcss/colors');
 
-const brandColor = colors.blue
+
 
 const config: Config = {
 
@@ -15,17 +14,12 @@ const config: Config = {
   theme: {
     extend: {
 			colors: {
-				brand: colors.orange,
-				black: colors.black,
-				white: colors.white,
-				gray: colors.gray,
-
+				'brand': 'var(--brand)',
+        'primary': 'var(--primary)',
+        'secondary': 'var(--secondary)',
+        'background': 'var(--background)',
+        'foreground': 'var(--foreground)',
 			},
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
-      },
     },
   },
   plugins: [
