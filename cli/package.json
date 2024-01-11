@@ -1,10 +1,10 @@
 {
   "name": "wando-ui",
-  "version": "2.5.0",
+  "version": "2.6.0",
   "description": "CLI tool for wando-ui to initialize and add components.",
   "type": "module",
   "main": "./dist/wando-ui.js",
-  "types": "./dist/wando-ui.d.js",
+  "types": "./dist/wando-ui.d.ts",
   "bin": {
     "wando-ui": "./dist/wando-ui.js"
   },
