@@ -20,7 +20,7 @@ export default function Home() {
         <p>The components are written in TypeScript and styled with Tailwind CSS.</p>
         {/* <h4>select framework</h4> */}
         <h3>Installation</h3>
-        <p>To initialize dependencies for a new project use the <span className='bg-gray-100 rounded-md'>init</span> command.</p>
+        <p>To initialize dependencies for a new project use the <span className='bg-gray-100 rounded-md p-1'>init</span> command.</p>
         <p>This will install dependencies, add the tailwind.config.ts, and add the globals.css for the project.</p>
         <CodeBlock codeSnippet='npx wando-ui@latest init'/>
       </section>
