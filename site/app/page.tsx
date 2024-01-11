@@ -22,7 +22,7 @@ export default function Home() {
         <h3>Installation</h3>
         <p>To initialize dependencies for a new project use the <span className='bg-gray-100 rounded-md'>init</span> command.</p>
         <p>This will install dependencies, add the tailwind.config.ts, and add the globals.css for the project.</p>
-        <CodeBlock codeSnippet='npx wando-ui init'/>
+        <CodeBlock codeSnippet='npx wando-ui@latest init'/>
       </section>
 
       <section className='prose'>
@@ -34,7 +34,7 @@ export default function Home() {
       <section id='components' className='prose'>
         <h3>Add Component</h3>
         <p>To add components to your project use the <span className='bg-gray-100 rounded-md'>add</span> command.</p>
-        <CodeBlock codeSnippet='npx wando-ui add $component'/>
+        <CodeBlock codeSnippet='npx wando-ui@latest add $Component'/>
       </section>
       </div>
     </>

@@ -46,3 +46,7 @@
     @apply px-4;
   }
 }
+
+span {
+  padding: 0;
+}
