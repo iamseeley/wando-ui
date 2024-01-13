@@ -3,9 +3,26 @@
 import React, { FC, ReactNode, useState } from 'react';
 import Button from './Button';
 import Card from './Card';
+import Progress from './Progress';
+import Collapsible from './Collapsible';
+import Avatar from './Avatar';
+import Badge from './Badge';
+import DatePicker from './DatePicker';
+import Dialog from './Dialog';
+import Dropdown from './Dropdown';
+import Form from './Form';
+import Menubar from './Menubar';
+import NavigationMenu from './NavMenu';
+import Popover from './Popover';
+import Select from './Selector';
+import Switch from './Switch';
+import Toggle from './Toggle';
+import Tooltip from './Tooltip';
+import Textarea from './Textarea';
 import { componentsData } from '@/app/data/components';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { darcula } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import Link from 'next/link';
 
 
 type CodeBlockProps = {
@@ -65,6 +82,21 @@ const SelectComponent = () => {
   const [selectedComponent, setSelectedComponent] = useState('');
   const [codeSnippet, setCodeSnippet] = useState('');
   const [viewMode, setViewMode] = useState('preview');
+  const [intent, setIntent] = useState('primary'); // New state for intent
+  const [isRounded, setIsRounded] = useState(false); 
+  const [date, setDate] = useState<string>('');
+
+  const [isDialogOpen, setDialogOpen] = useState<boolean>(false);
+
+  // Function to close the Dialog
+  const handleCloseDialog = () => {
+    setDialogOpen(false);
+  };
+
+  // Function to handle date change, with the parameter typed as a string
+  const handleDateChange = (newDate: string) => {
+    setDate(newDate);
+  };
 
   const handleComponentChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedName = event.target.value;
@@ -88,24 +120,97 @@ const SelectComponent = () => {
       return <div className=" py-4">Oh, hi. Nothing to see here. Select a component!</div>;
     }
 
+    
+
     switch (selectedComponent) {
       case 'Button':
-        return <Card intent={"primary"}><Button intent={"secondary"}>Button</Button></Card>;
+        return <Card intent={"primary"}><Button rounded intent={"secondary"}>Button</Button></Card>;
+    
       case 'Card':
-        return <Card><div></div></Card>;
-      // Add cases for other components
-      default:
-        return null;
+        return <Card><div>Content for Card</div></Card>;
+    
+      case 'Collapsible':
+        return <Card><Collapsible label='collapse' intent={"primary"}><div><p>reveal</p></div></Collapsible></Card>;
+    
+      case 'Avatar':
+        return <Card><Avatar alt='Avatar' intent={'primary'} size={'large'} src='/favicon.ico' /></Card>;
+    
+      case 'Badge':
+        return <Card><Badge intent={'primary'}>badge</Badge></Card>;
+    
+      case 'DatePicker':
+        return <Card><DatePicker onChange={handleDateChange} value={date} intent={"primary"} /></Card>;
+    
+      case 'Dialog':
+        return <Card><Dialog isOpen onClose={handleCloseDialog} intent={'primary'}><div>Tis the dialog</div></Dialog></Card>;
+    
+      case 'Dropdown':
+        return <Card><Dropdown open={true} label={'menu'}><ul><li><a href="/">link</a></li><li>link</li></ul></Dropdown></Card>;
+    
+      // Add the remaining components here:
+      case 'Form':
+        return <Card><Form><h1>form</h1><button>submit</button></Form></Card>;
+    
+      case 'Menubar':
+        return <Card><Menubar><Link href='/'>home</Link><Link href='/'>home</Link></Menubar></Card>;
+    
+      case 'NavigationMenu':
+        return <Card><NavigationMenu><Link href='/'>home</Link><Link href='/'>home</Link></NavigationMenu></Card>;
+    
+      case 'Popover':
+        return <Card><Popover buttonContent="Open Popover" popoverContent={<div>Popover content</div>} intent="primary" /></Card>;
+    
+      case 'Progress':
+        return <Card><Progress value={50} intent="primary" /></Card>;
+    
+      case 'Select':
+        return <Card><Select><option value="link">test</option><option value="link">test</option></Select></Card>;
+    
+      case 'Switch':
+        return <Card><Switch checked={true} /></Card>;
+    
+      case 'Textarea':
+        return <Card><Textarea intent="primary" /></Card>;
+    
+      case 'Toggle':
+        return <Card><Toggle  /></Card>;
+
+        case 'Tooltip':
+          return <Card><Tooltip content="Tooltip text" intent="primary"></Tooltip></Card>;
+    
+
+        default:
+            return null;
     }
   };
 
   return (
     <div>
       <select className='mb-2 p-2 rounded-md cursor-pointer' onChange={handleComponentChange} value={selectedComponent}>
-        <option value="">Select a component</option>
-        <option value="Button">Button</option>
-        <option value="Card">Card</option>
-        {/* Add more options here */}
+      <option value="Select Component">Select Component</option>
+      <option value="Avatar">Avatar</option>
+      <option value="Badge">Badge</option>
+      <option value="Button">Button</option>
+  
+      <option value="Card">Card</option>
+      <option value="Collapsible">Collapsible</option>
+      
+      <option value="DatePicker">Date Picker</option>
+      <option value="Dialog">Dialog</option>
+      <option value="Dropdown">Dropdown Menu</option>
+      <option value="Form">Form</option>
+      <option value="Menubar">Menubar</option>
+      <option value="NavigationMenu">Navigation Menu</option>
+      <option value="Popover">Popover</option>
+      <option value="Progress">Progress</option>
+      <option value="Select">Select</option>
+      <option value="Switch">Switch</option>
+      <option value="Textarea">Textarea</option>
+     
+      <option value="Toggle">Toggle</option>
+      <option value="Tooltip">Tooltip</option>
+
+      
       </select>
 
     {selectedComponent && (
