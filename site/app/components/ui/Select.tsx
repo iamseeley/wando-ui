@@ -146,8 +146,6 @@ const SelectComponent = () => {
     
       case 'Dropdown':
         return <Card><Dropdown open={true} label={'menu'}><ul><li><a href="/">link</a></li><li>link</li></ul></Dropdown></Card>;
-    
-      // Add the remaining components here:
       case 'Form':
         return <Card><Form><h1>form</h1><button>submit</button></Form></Card>;
     
