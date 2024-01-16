@@ -123,6 +123,8 @@ const SelectComponent = () => {
     
 
     switch (selectedComponent) {
+      case 'Select Component':
+        return <div className=" py-4">Oh, hi. Nothing to see here. Select a component!</div>;
       case 'Button':
         return <Card intent={"primary"}><Button rounded intent={"secondary"}>Button</Button></Card>;
     
@@ -139,7 +141,7 @@ const SelectComponent = () => {
         return <Card><Badge intent={'primary'}>badge</Badge></Card>;
     
       case 'DatePicker':
-        return <Card><DatePicker onChange={handleDateChange} value={date} intent={"primary"} /></Card>;
+        return <Card><DatePicker /></Card>;
     
       case 'Dialog':
         return <Card><Dialog isOpen onClose={handleCloseDialog} intent={'primary'}><div>Tis the dialog</div></Dialog></Card>;
@@ -155,8 +157,16 @@ const SelectComponent = () => {
       case 'NavigationMenu':
         return <Card><NavigationMenu><Link href='/'>home</Link><Link href='/'>home</Link></NavigationMenu></Card>;
     
-      case 'Popover':
-        return <Card><Popover buttonContent="Open Popover" popoverContent={<div>Popover content</div>} intent="primary" /></Card>;
+        case 'Popover':
+          return (
+            <Card>
+              <Popover 
+                trigger={<Button>Open Popover</Button>} 
+                popoverContent={<div><ul><li>popover content</li><li>popover content</li></ul></div>} 
+                intent="primary" 
+              />
+            </Card>
+          );
     
       case 'Progress':
         return <Card><Progress value={50} intent="primary" /></Card>;

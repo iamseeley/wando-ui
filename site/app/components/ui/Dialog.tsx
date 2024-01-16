@@ -47,7 +47,7 @@ export default function Dialog({ isOpen, onClose, children, intent, ...props }: 
 
   return (
 <>
-    <button onClick={toggleDialog}>
+    <button className='border border-neutral-200 rounded-md py-1 px-2 hover:bg-neutral-200' onClick={toggleDialog}>
         {isDialogOpen ? 'Close Dialog' : 'Open Dialog'}
     </button>
     {isDialogOpen && (

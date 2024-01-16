@@ -1,34 +1,32 @@
-import { cva, VariantProps } from 'class-variance-authority';
-import React from 'react';
+'use client'
 
-const datePickerStyles = cva(
-  'border p-2 rounded-md',
-  {
-    variants: {
-      intent: {
-        primary: 'bg-neutral-50 border-neutral-200',
-        secondary: 'bg-orange-100 border-orange-400',
-      },
-    },
-    defaultVariants: {
-      intent: 'primary',
-    },
-  }
-);
+import { useState } from 'react';
+import Popover from './Popover'; // Import the Popover component
 
-export interface DatePickerProps extends VariantProps<typeof datePickerStyles> {
-  value: string,
-  onChange: (value: string) => void,
-}
+const DatePicker: React.FC = () => {
+  const [date, setDate] = useState('');
 
-export default function DatePicker({ value, onChange, intent, ...props }: DatePickerProps) {
-  return (
+  const calendarContent = (
+    <div>
+      {/* Custom calendar logic goes here */}
+      <p>Calendar placeholder</p>
+      <button onClick={() => setDate(new Date().toISOString().split('T')[0])}>Select Today</button>
+    </div>
+  );
+
+  const inputField = (
     <input 
-      type="date" 
-      value={value} 
-      onChange={(e) => onChange(e.target.value)} 
-      className={datePickerStyles({ intent })} 
-      {...props} 
+      type="text" 
+      value={date}
+      onChange={(e) => setDate(e.target.value)}
+      placeholder="Select a date"
+      className="border p-2 rounded-md text-neutral-900 cursor-pointer max-w-xs"
     />
   );
-}
+
+  return (
+    <Popover trigger={inputField} popoverContent={calendarContent} intent="primary" />
+  );
+};
+
+export default DatePicker;

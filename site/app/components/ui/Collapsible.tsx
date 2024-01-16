@@ -1,5 +1,5 @@
-import { cva, VariantProps } from 'class-variance-authority';
 import React, { useState } from 'react';
+import { cva, VariantProps } from 'class-variance-authority';
 
 const collapsibleStyles = cva(
   'transition-all overflow-hidden',
@@ -16,7 +16,7 @@ const collapsibleStyles = cva(
     },
     defaultVariants: {
       intent: 'primary',
-      expanded: false
+      expanded: false,
     },
   }
 );
@@ -26,13 +26,20 @@ export interface CollapsibleProps extends VariantProps<typeof collapsibleStyles>
   label: string,
 }
 
-export default function Collapsible({ children, label, intent, expanded, ...props }: CollapsibleProps) {
-  const [isOpen, setIsOpen] = useState(expanded === true);
+export default function Collapsible({ children, label, intent, ...props }: CollapsibleProps) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleIcon = isOpen ? '▲' : '▼'; // Unicode characters for arrows
 
   return (
     <div {...props}>
-      <button className='border-2 p-2 rounded-sm' onClick={() => setIsOpen(!isOpen)}>{label}</button>
-      <div className={collapsibleStyles({ intent, expanded: isOpen ? true : false })}>
+      <button 
+        className="font-bold flex items-center border border-neutral-200  hover:bg-neutral-200  rounded-md p-2 gap-8 text-sm" 
+        onClick={() => setIsOpen(!isOpen)}
+      >
+        {label} <span className="text-xs ml-2">{toggleIcon}</span>
+      </button>
+      <div className={collapsibleStyles({ intent, expanded: isOpen })}>
         {isOpen && children}
       </div>
     </div>
