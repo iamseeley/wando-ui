@@ -1,6 +1,12 @@
 [
     "Button",
     "Card",
-    "Icon"
+    "Icon",
+    "Menubar",
+    "Dropdown",
+    "Form",
+    "Input",
+    "Popover",
+    "DatePicker",
+    "Collapsible"
 ]
-  
