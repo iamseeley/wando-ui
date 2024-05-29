@@ -11,7 +11,7 @@ import DatePicker from './DatePicker';
 import Dialog from './Dialog';
 import Dropdown from './Dropdown';
 import Form from './Form';
-import { Input } from './Form';
+import { Input } from './Input';
 import Menubar from './Menubar';
 import NavigationMenu from './NavMenu';
 import Popover from './Popover';
