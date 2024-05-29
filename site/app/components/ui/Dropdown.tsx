@@ -1,19 +1,19 @@
-'use client'
+'use client';
 
 import { cva, VariantProps } from 'class-variance-authority';
 import React, { useState, useEffect, useRef } from 'react';
+import Button from './Button';
 
 const dropdownMenuStyles = cva(
   'relative inline-block',
   {
     variants: {
       intent: {
-        primary: 'text-neutral-700',
+        primary: 'text-neutral-800',
         secondary: 'text-orange-500',
       },
       open: {
         true: 'visible',
-        
       },
     },
     defaultVariants: {
@@ -23,7 +23,7 @@ const dropdownMenuStyles = cva(
 );
 
 const menuStyles = cva(
-  'absolute w-48 py-1 mt-2 bg-white rounded-md shadow-lg border',
+  'absolute w-48 py-2 bg-white rounded-md shadow-lg border flex flex-col px-2 mt-1',
   {
     variants: {
       open: {
@@ -35,17 +35,16 @@ const menuStyles = cva(
 );
 
 export interface DropdownMenuProps extends VariantProps<typeof dropdownMenuStyles> {
-  label: React.ReactNode,
-  children: React.ReactNode,
-  intent?: 'primary' | 'secondary',
+  label: React.ReactNode;
+  children: React.ReactNode;
+  intent?: 'primary' | 'secondary';
 }
 
 export default function Dropdown({ label, children, intent = 'primary', ...props }: DropdownMenuProps) {
   const [isOpen, setIsOpen] = useState(false);
-  
+
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  // Event listener to close the dropdown if clicked outside
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
@@ -53,17 +52,33 @@ export default function Dropdown({ label, children, intent = 'primary', ...props
       }
     }
 
-    // Bind the event listener
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
-      // Unbind the event listener on clean up
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [dropdownRef]);
 
+  const handleMouseEnter = () => setIsOpen(true);
+  const handleMouseLeave = () => setIsOpen(false);
+
   return (
-    <div ref={dropdownRef} className={dropdownMenuStyles({ intent, open: isOpen ? true : false })} {...props}>
-      <button onClick={() => setIsOpen(!isOpen)}>{label}</button>
+    <div
+      ref={dropdownRef}
+      className={dropdownMenuStyles({ intent, open: isOpen ? true : false })}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      {...props}
+    >
+      <Button
+        shadow={false}
+        intent={intent}
+        rounded={false}
+        fullWidth={false}
+        centered={false}
+        className={`${isOpen ? 'underline' : ''} px-4  font-medium`}
+      >
+        {label}
+      </Button>
       <div className={menuStyles({ open: isOpen ? true : false })}>
         {children}
       </div>

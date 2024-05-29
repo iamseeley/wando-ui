@@ -11,6 +11,7 @@ import DatePicker from './DatePicker';
 import Dialog from './Dialog';
 import Dropdown from './Dropdown';
 import Form from './Form';
+import { Input } from './Form';
 import Menubar from './Menubar';
 import NavigationMenu from './NavMenu';
 import Popover from './Popover';
@@ -85,6 +86,7 @@ const SelectComponent = () => {
   const [intent, setIntent] = useState('primary'); // New state for intent
   const [isRounded, setIsRounded] = useState(false); 
   const [date, setDate] = useState<string>('');
+  const [isOpen, setIsOpen] = useState(false);
 
   const [isDialogOpen, setDialogOpen] = useState<boolean>(false);
 
@@ -129,7 +131,7 @@ const SelectComponent = () => {
         return <Card intent={"primary"}><Button rounded intent={"secondary"}>Button</Button></Card>;
     
       case 'Card':
-        return <Card><div>Content for Card</div></Card>;
+        return <Card><div>Card Content</div></Card>;
     
       case 'Collapsible':
         return <Card><Collapsible label='collapse' intent={"primary"}><div><p>reveal</p></div></Collapsible></Card>;
@@ -144,15 +146,31 @@ const SelectComponent = () => {
         return <Card><DatePicker /></Card>;
     
       case 'Dialog':
-        return <Card><Dialog isOpen onClose={handleCloseDialog} intent={'primary'}><div>Tis the dialog</div></Dialog></Card>;
+        return <Card><Dialog isOpen onClose={handleCloseDialog} intent={'primary'}><div>Tis the dialog.</div><div>It has appeared for you.</div></Dialog></Card>;
     
       case 'Dropdown':
-        return <Card><Dropdown open={true} label={'menu'}><ul><li><a href="/">link</a></li><li>link</li></ul></Dropdown></Card>;
+        return <Card><Dropdown open={true} label={'menu'}><Link href="/">home</Link><Link href="/">about</Link><Link href="/">docs</Link></Dropdown></Card>;
       case 'Form':
-        return <Card><Form><h1>form</h1><button>submit</button></Form></Card>;
+        return <Card>
+                  <Form intent="primary">
+                    <h3 className="text-xl font-bold mt-0 mb-0">Form</h3>
+                    <Input intent="primary" type="text" placeholder="Enter your name" />
+                    <Input intent="primary" type="email" placeholder="Enter your email" />
+                    <Button intent="secondary" type="submit">Submit</Button>
+                  </Form>
+              </Card>;
     
       case 'Menubar':
-        return <Card><Menubar><Link href='/'>home</Link><Link href='/'>home</Link></Menubar></Card>;
+        return <Card>
+                  <Menubar intent="primary" alignment="center" spacing="small">
+                    <Button shadow={false}  intent="primary" href="#">Home</Button>
+                    <Button shadow={false} intent="primary" href="#">About</Button>
+                    <Dropdown intent="primary" label="More">
+                      <Link  href="#">Services</Link>
+                      <Link  href="#">Contact</Link>
+                    </Dropdown>
+                  </Menubar>
+              </Card>;
     
       case 'NavigationMenu':
         return <Card><NavigationMenu><Link href='/'>home</Link><Link href='/'>home</Link></NavigationMenu></Card>;
@@ -161,6 +179,8 @@ const SelectComponent = () => {
           return (
             <Card>
               <Popover 
+                isOpen={isOpen} 
+                setIsOpen={setIsOpen}
                 trigger={<Button>Open Popover</Button>} 
                 popoverContent={<div><ul><li>popover content</li><li>popover content</li></ul></div>} 
                 intent="primary" 

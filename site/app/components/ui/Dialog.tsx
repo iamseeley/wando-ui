@@ -47,14 +47,14 @@ export default function Dialog({ isOpen, onClose, children, intent, ...props }: 
 
   return (
 <>
-    <button className='border border-neutral-200 rounded-md py-1 px-2 hover:bg-neutral-200' onClick={toggleDialog}>
+    <button className='border border-neutral-200 rounded-md py-1 px-2 hover:bg-neutral-100' onClick={toggleDialog}>
         {isDialogOpen ? 'Close Dialog' : 'Open Dialog'}
     </button>
     {isDialogOpen && (
     <div className={dialogStyles({ intent, open: isOpen ? true : false })} {...props}>
       <div className="m-auto p-4 rounded-md shadow-lg bg-white">
         {children}
-        <button onClick={handleCloseDialog}>Close</button>
+        <button className='mt-2 font-sm bg-neutral-50 px-2 border border-md border-neutral-200 hover:bg-neutral-100 rounded-md' onClick={handleCloseDialog}>Close</button>
       </div>
     </div>
     )}

@@ -29,12 +29,12 @@ export interface CollapsibleProps extends VariantProps<typeof collapsibleStyles>
 export default function Collapsible({ children, label, intent, ...props }: CollapsibleProps) {
   const [isOpen, setIsOpen] = useState(false);
 
-  const toggleIcon = isOpen ? '▲' : '▼'; // Unicode characters for arrows
+  const toggleIcon = isOpen ? '➖' : '➕'; // Unicode characters for arrows
 
   return (
     <div {...props}>
       <button 
-        className="font-bold flex items-center border border-neutral-200  hover:bg-neutral-200  rounded-md p-2 gap-8 text-sm" 
+        className="font-medium flex items-center border border-neutral-200  hover:bg-neutral-200  rounded-md p-2 gap-8 text-sm" 
         onClick={() => setIsOpen(!isOpen)}
       >
         {label} <span className="text-xs ml-2">{toggleIcon}</span>

@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
 import { cva, VariantProps } from 'class-variance-authority';
@@ -16,7 +16,7 @@ const popoverStyles = cva(
 );
 
 const contentStyles = cva(
-  'absolute z-10 w-48 py-2 mt-1  bg-white rounded-md shadow-lg border -translate-x-1/2 left-1/2 transform',
+  'absolute z-10 w-72 py-2 mt-1 bg-white rounded-md shadow-lg border left-1/2 transform -translate-x-1/2',
   {
     variants: {
       open: {
@@ -34,10 +34,11 @@ const contentStyles = cva(
 interface PopoverProps extends VariantProps<typeof popoverStyles> {
   trigger: React.ReactNode;
   popoverContent: React.ReactNode;
+  isOpen: boolean;
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const Popover: React.FC<PopoverProps> = ({ trigger, popoverContent, intent = 'primary' }) => {
-  const [isOpen, setIsOpen] = useState(false);
+const Popover: React.FC<PopoverProps> = ({ trigger, popoverContent, intent = 'primary', isOpen, setIsOpen }) => {
   const popoverRef = useRef<HTMLDivElement>(null);
 
   const togglePopover = () => setIsOpen(!isOpen);
