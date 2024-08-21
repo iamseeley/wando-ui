@@ -6,12 +6,8 @@ export default function Home() {
   return (
     <>
     
-   <div className="max-w-4xl md:max-h-[85vh] max-md:max-h-screen max-md:flex-auto w-full md:rounded bg-white md:left-[calc(50%-(var(--removed-body-scroll-bar-size)/2))] md:shadow-md overflow-auto focus:outline-none fixed top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] p-4 md:max-w-lg md:mx-auto">
-</div>
- 
       <div className='flex flex-col gap-4'>
       
-     
 
       <section className='prose prose-p:my-1.5'>
         <div className=' flex flex-col border-2 border-gray-300 border-dotted bg-white py-4 px-6 text-black'>
