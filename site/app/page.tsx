@@ -6,7 +6,9 @@ export default function Home() {
   return (
     <>
     
-    
+   <div className="max-w-4xl md:max-h-[85vh] max-md:max-h-screen max-md:flex-auto w-full md:rounded bg-white md:left-[calc(50%-(var(--removed-body-scroll-bar-size)/2))] md:shadow-md overflow-auto focus:outline-none fixed top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] p-4 md:max-w-lg md:mx-auto">
+</div>
+ 
       <div className='flex flex-col gap-4'>
       
      

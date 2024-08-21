@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import Header from './components/layout/Header'
 import Footer from './components/layout/Footer'
-
+import Script from 'next/script'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -27,6 +27,7 @@ export default function RootLayout({
           </main>
           <Footer />
         </div>
+        <Script src="https://esm.town/v/iamseeley/trackingScript" />
       </body>
 
     
